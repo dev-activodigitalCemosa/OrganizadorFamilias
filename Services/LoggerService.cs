@@ -9,10 +9,12 @@ namespace organizadorFamilia.Services
 {
     public static class LoggerService
     {
-        private static readonly string logFilePath = "log.txt";
+        public static readonly string logFilePath = "log.txt";
+        public static int countErrors = 0;
 
         public static void Log(string message)
         {
+            countErrors++;
             using (StreamWriter writer = new StreamWriter(logFilePath, true))
             {
                 writer.WriteLine($"{DateTime.Now}: {message}");
@@ -21,7 +23,7 @@ namespace organizadorFamilia.Services
 
         public static bool HasErrors()
         {
-            return File.Exists(logFilePath) && new FileInfo(logFilePath).Length > 0;
+            return countErrors > 0;
         }
 
         public static void ClearLog()

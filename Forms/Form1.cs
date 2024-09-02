@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -72,7 +73,7 @@ namespace organizadorFamilia
             string filePath = textBoxArchivoExcel.Text;
             string destDir = textBoxDestino.Text;
             string sourceDir = textBoxOrigen.Text;
-
+            LoggerService.countErrors = 0;
             if (string.IsNullOrEmpty(filePath) || string.IsNullOrEmpty(destDir) || string.IsNullOrEmpty(sourceDir))
             {
                 MessageBox.Show("Por favor, selecciona todos los archivos y directorios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -106,6 +107,7 @@ namespace organizadorFamilia
                 if (LoggerService.HasErrors())
                 {
                     MessageBox.Show("Proceso completado con errores. Revisa el archivo log.txt para más detalles.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Process.Start("explorer.exe", LoggerService.logFilePath);
                 }
                 else
                 {
