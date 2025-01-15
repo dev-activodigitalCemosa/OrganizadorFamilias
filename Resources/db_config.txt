@@ -1,0 +1,5 @@
+Server=localhost
+Port=5432
+Database=ActivoDigital_Database
+Username=ADBIM
+Password=TC..mg.7sM4P

@@ -1,4 +1,6 @@
-﻿using organizadorFamilia.Models;
+﻿using organizadorFamilia.Domain;
+using organizadorFamilia.Forms;
+using organizadorFamilia.Models;
 using organizadorFamilia.Services;
 using System;
 using System.Collections.Generic;
@@ -6,7 +8,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,21 +19,17 @@ namespace organizadorFamilia
 {
     public partial class Form1 : Form
     {
+        private readonly Connection _connection = new Connection();
+        private FamConnect frm;
+        private BBDDService bdServ;
+
         public Form1()
         {
             InitializeComponent();
+            string configFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources", "db_config.txt");
+            frm = new FamConnect(_connection, configFilePath);
+            bdServ = new BBDDService(_connection.CreateConnectionString(),progressBar);
         }
-
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAbrirExcel_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -124,6 +124,17 @@ namespace organizadorFamilia
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void BtnConexion_Click(object sender, EventArgs e)
+        {
+            frm.ShowDialog();
+        }
+
+        private void btnVolcarBD_Click(object sender, EventArgs e)
+        {
+            string excelPath = textBoxArchivoExcel.Text;
+            bdServ.InsertDataFromExcel(excelPath);
         }
     }
 }

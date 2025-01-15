@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnVolcarBD = new System.Windows.Forms.Button();
+            this.BtnConexion = new System.Windows.Forms.Button();
+            this.lblControl = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.labelOrigen = new System.Windows.Forms.Label();
@@ -41,13 +45,13 @@
             this.textBoxArchivoExcel = new System.Windows.Forms.TextBox();
             this.btnAbrirExcel = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.lblControl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnVolcarBD);
+            this.panel1.Controls.Add(this.BtnConexion);
             this.panel1.Controls.Add(this.lblControl);
             this.panel1.Controls.Add(this.btnCancelar);
             this.panel1.Controls.Add(this.progressBar);
@@ -67,6 +71,54 @@
             this.panel1.Size = new System.Drawing.Size(710, 366);
             this.panel1.TabIndex = 0;
             // 
+            // btnVolcarBD
+            // 
+            this.btnVolcarBD.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolcarBD.Location = new System.Drawing.Point(179, 290);
+            this.btnVolcarBD.Margin = new System.Windows.Forms.Padding(2);
+            this.btnVolcarBD.Name = "btnVolcarBD";
+            this.btnVolcarBD.Size = new System.Drawing.Size(150, 35);
+            this.btnVolcarBD.TabIndex = 15;
+            this.btnVolcarBD.Text = "Volcar a la BBDD";
+            this.btnVolcarBD.UseVisualStyleBackColor = true;
+            this.btnVolcarBD.Click += new System.EventHandler(this.btnVolcarBD_Click);
+            // 
+            // BtnConexion
+            // 
+            this.BtnConexion.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnConexion.Location = new System.Drawing.Point(21, 290);
+            this.BtnConexion.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnConexion.Name = "BtnConexion";
+            this.BtnConexion.Size = new System.Drawing.Size(133, 44);
+            this.BtnConexion.TabIndex = 14;
+            this.BtnConexion.Text = "Cadena de conexión";
+            this.BtnConexion.UseVisualStyleBackColor = true;
+            this.BtnConexion.Click += new System.EventHandler(this.BtnConexion_Click);
+            // 
+            // lblControl
+            // 
+            this.lblControl.AutoSize = true;
+            this.lblControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblControl.Location = new System.Drawing.Point(2, 350);
+            this.lblControl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblControl.Name = "lblControl";
+            this.lblControl.Size = new System.Drawing.Size(73, 16);
+            this.lblControl.TabIndex = 13;
+            this.lblControl.Text = "lblControl";
+            this.lblControl.Visible = false;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(518, 290);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(150, 35);
+            this.btnCancelar.TabIndex = 12;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // progressBar
             // 
             this.progressBar.Location = new System.Drawing.Point(28, 244);
@@ -82,9 +134,9 @@
             this.label1.Location = new System.Drawing.Point(26, 94);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(235, 16);
+            this.label1.Size = new System.Drawing.Size(150, 16);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Seleccionar destino de los datos";
+            this.label1.Text = "Destino de los datos";
             // 
             // labelOrigen
             // 
@@ -93,9 +145,9 @@
             this.labelOrigen.Location = new System.Drawing.Point(26, 20);
             this.labelOrigen.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelOrigen.Name = "labelOrigen";
-            this.labelOrigen.Size = new System.Drawing.Size(203, 16);
+            this.labelOrigen.Size = new System.Drawing.Size(118, 16);
             this.labelOrigen.TabIndex = 9;
-            this.labelOrigen.Text = "Seleccionar origen de datos";
+            this.labelOrigen.Text = "Origen de datos";
             // 
             // textBoxOrigen
             // 
@@ -127,17 +179,16 @@
             this.labelInfo.Size = new System.Drawing.Size(145, 16);
             this.labelInfo.TabIndex = 5;
             this.labelInfo.Text = "Seleccionar archivo";
-            this.labelInfo.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnProcesar
             // 
             this.btnProcesar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProcesar.Location = new System.Drawing.Point(364, 290);
+            this.btnProcesar.Location = new System.Drawing.Point(350, 290);
             this.btnProcesar.Margin = new System.Windows.Forms.Padding(2);
             this.btnProcesar.Name = "btnProcesar";
             this.btnProcesar.Size = new System.Drawing.Size(150, 35);
             this.btnProcesar.TabIndex = 4;
-            this.btnProcesar.Text = "Copiar";
+            this.btnProcesar.Text = "Copiar Familias";
             this.btnProcesar.UseVisualStyleBackColor = true;
             this.btnProcesar.Click += new System.EventHandler(this.btnProcesar_Click);
             // 
@@ -184,31 +235,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(518, 290);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(150, 35);
-            this.btnCancelar.TabIndex = 12;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // lblControl
-            // 
-            this.lblControl.AutoSize = true;
-            this.lblControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblControl.Location = new System.Drawing.Point(26, 299);
-            this.lblControl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblControl.Name = "lblControl";
-            this.lblControl.Size = new System.Drawing.Size(73, 16);
-            this.lblControl.TabIndex = 13;
-            this.lblControl.Text = "lblControl";
-            this.lblControl.Visible = false;
             // 
             // Form1
             // 
@@ -222,6 +248,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
+            this.ShowIcon = false;
             this.Text = "Organizador de familias";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -246,6 +273,8 @@
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label lblControl;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button BtnConexion;
+        private System.Windows.Forms.Button btnVolcarBD;
     }
 }
 

@@ -26,7 +26,7 @@ namespace organizadorFamilia.Services
             foreach (var directory in directories)
             {
                 // Normaliza el nombre de la carpeta y compara
-                if (Path.GetFileName(directory).NormalizePath() == normalizedFolderName)
+                if (string.Equals(Path.GetFileName(directory).NormalizePath(), normalizedFolderName, StringComparison.OrdinalIgnoreCase))
                 {
                     return directory;
                 }
